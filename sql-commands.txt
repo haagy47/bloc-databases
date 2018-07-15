@@ -1,0 +1,104 @@
+Exercises
+Use the commands above to complete the following tasks, and submit the SQL statements. Real-world examples must be distinct from those used in the text.
+
+1. List the commands for adding, updating, and deleting data.
+    * ‘INSERT INTO’, ‘UPDATE’, ‘DELETE'
+2. Explain the structure for each type of command.
+    * ‘INSERT INTO’ - uses this phrase followed by the table name, the column names in parenthesis then the word VALUES with the values after that.
+    * ‘UPDATE’ -  uses this word followed by the table name, the word SET followed by the new value, then the word WHERE which points to a unique identifier for a row, or rows. 
+    * ‘DELETE’ - uses this along with the word FROM to point to a specific table name; this is followed by WHERE which points to a row(s) unique identifier. 
+3. What are some of the data types that can be used in tables? Give a real-world example of each type.
+    * Boolean Data Type - Example: Whether someone is a member of a gym: True or False.
+    * Monetary Data Type - Example: The cost of a plane ticket.
+    * Numeric Data Type - Example: Resident apartment number. 
+4. Decide how to create a new table to hold a list of people invited to a wedding dinner. The table needs to have first and last names, whether they sent in their RSVP, the number of guests they are bringing, and the number of meals (1 for adults and 1/2 for children).
+    * Which data type would you use to store each of the following pieces of information?
+        * First and last name.
+            * Text
+        * Whether they sent in their RSVP.
+            * Boolean
+        * Number of guests.
+            * Numeric (1, 0)
+        * Number of meals.
+            * Numeric (2, 1)
+    * Write a command that creates the table to track the wedding dinner.
+         CREATE TABLE dinner (
+             id integer,
+             first-name text,
+             last-name text,  
+             rsvp boolean,
+             guest numeric(1),
+             meal numeric(2,1)
+         );
+    * Write a command that adds a column to track whether the guest sent a thank you card.
+        * ALTER TABLE dinner ADD COLUMN thank-you boolean SET DEFAULT ‘None’;
+    * You have decided to move the data about the meals to another table, so write a command to remove the column storing the number meals from the wedding table.
+        * ALTER TABLE dinner DROP COLUMN meal;
+    * The guests will need a place to sit at the reception, so write a command that adds a column for table number.
+        * ALTER TABLE dinner ADD COLUMN table-number numeric(2, 0);
+    * The wedding is over and we do not need to keep this information, so write a command that deletes the table numbers from the database.
+        * ALTER TABLE dinner DROP COLUMN table-number;
+5. Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+         CREATE TABLE books (
+             ISBN numeric(13),
+             title text,
+             author text,
+             genre text,
+             publishing-date date input,
+             total-copies numeric,
+             available-copies numeric
+         );
+    * Find three books and add their information to the table.
+         INSERT INTO books (ISBN, title, author, genre, publishing-date, total-copies, available-copies)
+         VALUES
+         (97803074559205, ‘Americanah’, ‘Chimamanda Ngozi Adichie’, ‘Novel’, 2013-05-13, 10, 4),
+         (97803074559678, ‘Half Of a Yellow Sun’, ‘Chimamanda Ngozi Adichie’, ‘Novel’, 2010-07-19, 12, 8),
+         (67803074759669, ‘Born a Crime’, ’Trevor Noah’, ‘Biography’, 2016-11-15, 20, 9);
+    * Someone has just checked out one of the books. Change the number of available copies to 1 fewer.
+        * UPDATE books SET available-copies=3 WHERE ISBN=97803074559205;
+    * Now one of the books has been added to the banned books list. Remove it from the table.
+        * DELETE FROM products WHERE ISBN=97803074559678;
+6. Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and its approximate miles from Earth. 
+         CREATE TABLE spacecrafts (
+             id numeric, 
+             name text,
+             year-launched numeric(4),
+             country text,
+             description text,
+             orbiting-body text,
+             status boolean,
+             miles numeric
+         );
+    * In addition to the table creation, provide commands that perform the following operations:
+        * Add three non-Earth-orbiting satellites to the table.
+             INSERT INTO spacecrafts (id, name, year-launched, country, description, orbiting-body, status, miles)
+             VALUES
+             (4, ‘Portal’, 2090, ‘Russia’, ‘Things when well’, ‘Venus’, true, 162,000,000),
+             (5, ‘Rowan’, 2085, ‘USA’, ‘Investigating alien issues’, ‘Pluto’, true, 4,670,000,000), 
+             (6, ‘Europa’, 2095, ‘Japan’, ‘Checking out some cool stuff’, ‘Jupiter’, true, 365,000,000);
+        * Remove one of the satellites from the table since it has just crashed into the planet.
+            * DELETE FROM spacecrafts WHERE id=4;
+        * Edit another satellite because it is no longer operating and change the value to reflect that.
+            * UPDATE spacecrafts SET status=false WHERE id=6;
+7. Write a command to create a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not you have read the email, and the id of the email chain it's in.
+         CREATE TABLE emails (
+             id numeric,
+             subject text,
+             sender text,
+             other-recipients text,
+             body text,
+             timestamp time,
+             read boolean, 
+             chain-id numeric
+         );
+    * Also provide commands that perform the following operations:
+        * Add three new emails to the inbox.
+             INSERT INTO emails (id, subject, sender, other-recipients, body, timestamp, read, chain-id)
+             VALUES
+             (1, ‘Puppies’, ‘Vanessa Carlson’, ‘PJ Rogers’, ‘Cute puppy photos’, 04:05:14, false, 134),
+             (2, ‘Mom’s Recipes’, ‘Penelope Jackson’, ‘Peggy Jones’, ‘Here are all the recipes from mom’s cookbook’, 12:15:45, true, 144),
+             (3, ‘Notes from Class’, ‘Charles Thor’, ‘none’, ‘Notes from biology lecture attached’, 13:34:05, false, 147);
+        * You deleted one of the emails, so write a command to remove the row from the inbox table.
+            * DELETE FROM emails WHERE id=1;
+        * You started reading an email but just heard a crash in another room. Mark the email as unread before investigating the crash, so you can come back and read it later.
+            * UPDATE emails SET read=false WHERE id=3;
