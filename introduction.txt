@@ -1,0 +1,89 @@
+*Exercises*
+
+1. What data types do each of these values represent?
+
+	"A Clockwork Orange" - Text
+	42 - Integer
+	09/02/1945 - Date
+	98.7 - Single
+	$15.99 - Money
+
+2. Explain when a database would be used. Explain when a text file would be used.
+
+	Databases should be used when working with a large data set because they're necessary to search and manipulate data quickly. Text files would be used if flexibility is not required to changed and manipulate data. 
+
+3. Describe one difference between SQL and other programming languages.
+
+	SQL is a declarative language, meaning it's used specifically to access data, while other programming languages are procedural, meaning they spell out the steps needed to achieve a goal. 
+
+4. In your own words, explain how the pieces of a database system fit together at a high level.
+
+	Databases are like spreadsheets. The pieces of data are stored in a grid system where a row encapsulates information related to a piece of data; columns organize data that is similar. Each cell contains a piece of data than is related to the information in it's row.  
+
+5. Explain the meaning of table, row, column, and value.
+
+	A table is the framework that contains the smaller bits of data. A row contains data that describes other items in that row; the data in the row is related. A column labels the data that lies within it and all the data is similar in type. A value is what is contained within each cell of the table. A value is placed strategically based off the subjects described above. 
+
+
+6. List three data types that can be used in a table.
+
+	Integers, Monetary, Date/Time
+
+7. Given this payments table, provide an English description of the following queries and include their results:
+
+SELECT date, amount
+FROM payments; 
+
+// Find the columns date and amount in the payments table
+
+result: A column containing all values in the date column, and a column containing all data in the amount column
+
+SELECT amount 
+FROM payments
+WHERE amount > 500;
+
+// Find amount column in payments table and select cells that are greater than 500
+
+result: One cell with the value '1500.00'
+
+SELECT * 
+FROM payments
+WHERE payee = 'Mega Foods';
+
+// Select all columns from payments table where the payee row contains the value 'Mega Foods'
+
+result: The entire 'Mega Foods' row: ('2016-05-15', 'Mega Foods', 124.93, 'Groceries')
+
+8. Given this users table, write SQL queries using the following criteria and include the output:
+
+
+
+The email and sign-up date for the user named DeAndre Data.
+
+SELECT email, signup
+FROM users
+WHERE name = 'DeAndre Data';
+
+result: 'datad@comcast.net', '2008-01-20'
+
+
+
+The user ID for the user with email 'aleesia.algorithm@uw.edu'.
+
+SELECT userid
+FROM users
+WHERE email = 'aleesia.algorithm@uw.edu';
+
+result: 1
+
+
+
+All the columns for the user ID equal to 4.
+
+SELECT *
+FROM users
+WHERE userid = 4;
+
+result: ( 4, 'Brandy Boolean', 'bboolean@nasa.gov', '1999-10-15')
+
+
