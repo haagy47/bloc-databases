@@ -17,7 +17,7 @@
   Display the name, gender, and age of all dogs that are part Labrador.
 	SELECT name, gender, age
 	FROM dogs
-	WHERE '%labrador%';
+	WHERE breed LIKE '%labrador%';
   Display the ids of all dogs that are under 1 year old.
 	SELECT id
 	FROM dogs
@@ -58,16 +58,17 @@
 5. From the cats table, write queries to select the following pieces of data.
 
   Display all the information about all of the available cats.
+
 	SELECT *
 	FROM cats;
 	
   Choose one cat of each age to show to potential adopters.
-	SELECT * 
-	FROM cats
-	WHERE age = 1
-	AND age = 7 
-	AND age = 3;
+	
+	SELECT DISTINCT age
+	FROM cats;
+
   Find all of the names of the cats, so you don’t choose duplicate names for new cats.
+
 	SELECT name
 	FROM cats;
 
@@ -78,7 +79,13 @@
   >= - To find a number greater than or equal to specified number; ex: find cars in a lot that are greater than year 1999.
   != - To find all data (numbers or strings) that are not equal to specified data; ex: find all people who are not in the freshman class.
   = - To find all data (numbers or strings) that are equal to specified data; ex: find all people with the last name 'Wilson'.
-  LIKE - To find all strings that are like the partial string specified; ex: find all cities that start with 'New'. 
+  LIKE - To find all strings that are like the partial string specified; ex: find all cities that start with 'New'.
+  BETWEEN - To find a value that is greater than something and less than something; ex: find all employees who started working with a company between 2015 and 2017. 
+  IS DISTINCT FROM - To find a value that is not equal to something; it's similar to <> but can be used to evaluate null; ex: find all neighbors on a block who don't have a political sign in their yard.
+  IS TRUE / IS FALSE - To evaluate if a value is true or false but can also evaluate a null value; ex: find which roommates have paid utilities for the month;
+  IS NULL - To check if a value is null, or not null; ex: find which patrons haven't returned their books. 
+  AND - To check if both expressions are true. If so, it will return what is evaluated; ex: check which employees have accident insurance and life insurance.
+  OR - To check if one or another expression is true; ex: find which customers ordered french fries or a milk shake. 
 
 7. From the cats table, what data is returned from these queries?
 
